@@ -25,6 +25,7 @@ import br.univali.portugol.nucleo.simbolos.Vetor;
 import br.univali.ps.ui.abas.AbaCodigoFonte;
 
 import br.univali.ps.ui.rstautil.PortugolParser;
+import br.univali.ps.ui.swing.DragAndDropDeAlgoritmo;
 import br.univali.ps.ui.weblaf.PSTreeUI;
 import br.univali.ps.ui.weblaf.WeblafUtils;
 import com.alee.laf.tree.WebTreeUI;
@@ -133,6 +134,8 @@ public class PortugolOutlineTree extends AbstractTree implements ObservadorExecu
         listener = new Listener();
         setDragEnabled(true);
         setTransferHandler(new TreeTransferHandler());
+        
+        //setTransferHandler(new DragAndDropDeAlgoritmo(new TreeTransferHandler()));
         
         if (WeblafUtils.weblafEstaInstalado())
         {

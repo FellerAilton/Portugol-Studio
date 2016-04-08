@@ -12,8 +12,12 @@ import br.univali.ps.ui.ColorController;
 import br.univali.ps.ui.utils.FabricaDicasInterface;
 import br.univali.ps.ui.paineis.PainelTabuladoPrincipal;
 import br.univali.ps.ui.abas.Aba;
+import br.univali.ps.ui.swing.DragAndDropDeAlgoritmo;
 import br.univali.ps.ui.utils.FileHandle;
 import br.univali.ps.ui.utils.IconFactory;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
@@ -23,6 +27,7 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.print.Doc;
 import javax.swing.*;
 import org.apache.commons.io.FileUtils;
 
@@ -62,10 +67,13 @@ public final class TelaPrincipal extends JFrame
         criaAbas();
         instalarObservadores();
         configurarCores();
-        
+
+        setTransferHandler(new DragAndDropDeAlgoritmo(getTransferHandler()));
+
     }
-    
-    private void configurarCores(){
+
+    private void configurarCores()
+    {
 //        mainPanel.setBackground(ColorController.COR_DESTAQUE);
         mainPanel.setBackground(ColorController.FUNDO_CLARO);
         painelTabuladoPrincipal.setBackground(ColorController.COR_PRINCIPAL);
@@ -105,16 +113,18 @@ public final class TelaPrincipal extends JFrame
             }
 
             @Override
-            public void windowOpened(WindowEvent e) {
+            public void windowOpened(WindowEvent e)
+            {
                 Configuracoes configuracoes = Configuracoes.getInstancia();
-                if(configuracoes.isExibirDicasInterface()){
-                    SwingUtilities.invokeLater(() -> {
+                if (configuracoes.isExibirDicasInterface())
+                {
+                    SwingUtilities.invokeLater(() ->
+                    {
                         PortugolStudio.getInstancia().getTelaDicas().setVisible(true);
                     });
                 }
             }
-            
-            
+
         });
 
         addComponentListener(new ComponentAdapter()

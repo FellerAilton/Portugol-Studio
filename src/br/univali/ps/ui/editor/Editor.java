@@ -22,6 +22,7 @@ import br.univali.ps.ui.utils.FabricaDicasInterface;
 import br.univali.ps.ui.telas.TelaRenomearSimbolo;
 
 import br.univali.ps.ui.rstautil.SuporteLinguagemPortugol;
+import br.univali.ps.ui.swing.DragAndDropDeAlgoritmo;
 import br.univali.ps.ui.utils.IconFactory;
 import br.univali.ps.ui.weblaf.WeblafUtils;
 import com.alee.laf.WebLookAndFeel;
@@ -161,6 +162,8 @@ public final class Editor extends javax.swing.JPanel implements CaretListener, K
         carregarConfiguracoes();
         WeblafUtils.configuraWebLaf(scrollPane);
         configurarCores();
+        
+        //getTextArea().setTransferHandler(new DragAndDropDeAlgoritmo(getTextArea().getTransferHandler()));
     }
     private void configurarCores(){
         errorStrip.setBackground(ColorController.COR_PRINCIPAL);
